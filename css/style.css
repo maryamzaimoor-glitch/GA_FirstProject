@@ -1,0 +1,72 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family:  Helvetica, Tahoma, Verdana, sans-serif;
+    background: #f5f5f5;
+    align-items: center;
+    padding: 20px;
+}
+
+#word {
+    font-size: 32px;
+    letter-spacing: 10px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+#message {
+    font-size: 20px;
+    margin-bottom: 15px;
+    height: 24px; /* so UI doesn't jump */
+    color: #333;
+    font-weight: bold;
+}
+#keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 400px;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+.key-btn {
+    padding: 10px 14px;
+    font-size: 18px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    border-radius: 5px;
+    text-decoration: none;
+    display: block;
+}
+
+.key-btn:hover {
+    background-color: #0056b3;
+    text-decoration:underline;
+    transition: .4s ;
+}
+.key-btn.disabled,
+.key-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    color: #666;
+}
+#hangman-img {
+    width: 200px;
+    margin-bottom: 20px;
+}
+#reset {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
