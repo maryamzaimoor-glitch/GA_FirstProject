@@ -77,27 +77,35 @@ function startGame(){
 
 
 
-function handleGuess(letter){
+function handleGuess(letter) {
     console.log("handleGuess triggered with:", letter);
-console.log("Remaining attempts:", remainingAttempts);
+    console.log("Remaining attempts before guess:", remainingAttempts);
 
     if (gameOver) return;
-    let userGuess = letter.split("");
-    userGuess.forEach(guess => {
-        if (secretWord.includes(guess)) {
-            console.log(`${secretWord} contains letter chosen`);
-        }
-        else console.log(`${secretWord} does not contain letter chosen`);
-        wrongGuess.push(guess)
-    });
-    
-    updateDisplayMsg();
-    updateWrongLetters();
-    attemptsEl.textContent= 'Attemps Left = ' + remainingAttempts;
-    checkGameOver();
-console.log("Correct guesses:", correctGuess);
-console.log("Wrong guesses:", wrongGuess);
+    if (correctGuess.includes(letter) || wrongGuess.includes(letter)) {
+        console.log("Letter already guessed:", letter);
+        return;
+    }
 
+    if (secretWord.includes(letter)) {
+        correctGuess.push(letter);
+        console.log("Correct guess:", letter);
+    } 
+    else {
+        wrongGuess.push(letter);
+        remainingAttempts--;
+        console.log("Wrong guess:", letter);
+    }
+}
+
+    updateWordDisplay();   
+    updateDisplayMsg()
+
+function updateWordDisplay() {
+    wordEl.textContent = secretWord
+        .split('')
+        .map(letter => (correctGuess.includes(letter) ? letter : '_'))
+        .join(' ');
 }
 
 
@@ -122,15 +130,17 @@ function updateWrongLetters(){
 }
 
 function updateDisplayMsg() {   
+
     if (gameOver) {
         if (remainingAttempts > 0) {
             messageEl.textContent = "CONGRATS YOU WON!";
         } else {
             messageEl.textContent = "GAME OVER, THE WORD WAS: " + secretWord;
         }
-        return;
+        return; 
     }
-    if (remainingAttempts === maxAttempsts) {
+
+    if (remainingAttempts === maxAttempts) {
         messageEl.textContent = "Start Guessing!";
         return;
     }
@@ -195,4 +205,17 @@ function resetGame(){
 
     startGame();
 
+}
+function generateKeyboard() {
+    keyboardEl.innerHTML = "";
+
+    const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+    alphabet.split("").forEach(letter => {
+        const btn = document.createElement("button");
+        btn.textContent = letter;
+        btn.classList.add("key-btn");
+        btn.addEventListener("click", handLetterClick);
+        keyboardEl.appendChild(btn);
+    });
 }
