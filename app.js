@@ -32,7 +32,7 @@ let secretWord = '';
 let correctGuess = [];
 let wrongGuess = [];
 let maxAttempsts = 6;
-let remainingAttempts = maxAttempsts;
+let remainingAttempts = maxAttempts;
 let gameOver = false;
 
 
@@ -57,13 +57,13 @@ resetBtnEl.addEventListener('click', resetGame);
 /*-------------------------------- Functions --------------------------------*/
 
 function startGame(){
-    console.log("startGame() called ✅");
+    console.log("startGame() called ");
     secretWord= WORDS[Math.floor(Math.random() * WORDS.length)].toLowerCase();
     console.log("Secret word selected:", secretWord);
 
     correctGuess = [];
     wrongGuess =[];
-    remainingAttempts = maxAttempsts;
+    remainingAttempts = maxAttempts;
     gameOver = false;
     attemptsEl.textContent = 'Attempts Left = ' + remainingAttempts;
 
@@ -96,10 +96,10 @@ function handleGuess(letter) {
         remainingAttempts--;
         console.log("Wrong guess:", letter);
     }
-}
 
     updateWordDisplay();   
     updateDisplayMsg()
+}
 
 function updateWordDisplay() {
     wordEl.textContent = secretWord
@@ -159,7 +159,7 @@ function updateDisplayMsg() {
 
 
 function checkGameOver(){
-    if (remainingAttempts === maxAttempsts){
+    if (remainingAttempts === maxAttempts){
         messageEl.textContent = "Start Guessing!";
     }
 
@@ -189,7 +189,7 @@ function disableLetterButtons(){
 function resetGame(){
     correctGuess = [];
     wrongGuess = [];
-    remainingAttempts = maxAttempsts;
+    remainingAttempts = maxAttempts;
     gameOver = false;
 
     wrongLettersEl.textContent = "";
