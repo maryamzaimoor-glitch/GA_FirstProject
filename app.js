@@ -21,7 +21,7 @@ const WORDS = [
 let secretWord = '';
 let correctGuess = [];
 let wrongGuess = [];
-let maxAttempsts = 6;
+let maxAttempts = 6;
 let remainingAttempts = maxAttempts;
 let gameOver = false;
 
