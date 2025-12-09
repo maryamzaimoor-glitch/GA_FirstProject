@@ -217,3 +217,5 @@ function generateKeyboard() {
         keyboardEl.appendChild(btn);
     });
 }
+startGame();
+
