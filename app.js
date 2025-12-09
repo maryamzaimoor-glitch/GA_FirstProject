@@ -1,3 +1,14 @@
+/* console logs */
+console.log("JS Connected Successfully 🔥");
+
+console.log("wordEl =", wordEl);
+console.log("wrongLettersEl =", wrongLettersEl);
+console.log("attemptsEl =", attemptsEl);
+console.log("keyboardEl =", keyboardEl);
+console.log("hangmanImgEl =", hangmanImgEl);
+console.log("resetBtnEl =", resetBtnEl);
+
+
 /*-------------------------------- Constants --------------------------------*/
 
 const WORDS = [
@@ -34,23 +45,25 @@ const attemptsEl = document.querySelector('#attempts');
 const keyboardEl = document.querySelector('#keyboard');
 const hangmanImgEl = document.querySelector('#hangman-img');
 const resetBtnEl = document.querySelector('#reset')
+const messageEl = document.querySelector('#message');
+
 
 
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 resetBtnEl.addEventListener('click', resetGame);
-letterBtnEl.addEventListener('click', handLetterClick());
-
-
 
 /*-------------------------------- Functions --------------------------------*/
 
 function startGame(){
+    console.log("startGame() called ✅");
     secretWord= WORDS[Math.floor(Math.random() * WORDS.length)].toLowerCase();
+    console.log("Secret word selected:", secretWord);
+
     correctGuess = [];
     wrongGuess =[];
-    remainingAttempts = [];
+    remainingAttempts = maxAttempsts;
     gameOver = false;
     attemptsEl.textContent = 'Attempts Left = ' + remainingAttempts;
 
@@ -65,6 +78,9 @@ function startGame(){
 
 
 function handleGuess(letter){
+    console.log("handleGuess triggered with:", letter);
+console.log("Remaining attempts:", remainingAttempts);
+
     if (gameOver) return;
     let userGuess = letter.split("");
     userGuess.forEach(guess => {
@@ -79,6 +95,8 @@ function handleGuess(letter){
     updateWrongLetters();
     attemptsEl.textContent= 'Attemps Left = ' + remainingAttempts;
     checkGameOver();
+console.log("Correct guesses:", correctGuess);
+console.log("Wrong guesses:", wrongGuess);
 
 }
 
@@ -91,35 +109,42 @@ function handLetterClick(){
     this.disabled = true;
     this.classList.add('disabled');
 
+    console.log("Button clicked:", this.textContent);
+
+
 }
 
 function updateWrongLetters(){
     wrongLettersEl.textContent = wrongGuess.join(', '); // joins the wrong guesses array
 
+    console.log("updateWrongLetters → wrongGuess:", wrongGuess);
+
 }
 
-function updateDisplayMsg(){   
-    if (gameOver)
-    if (remainingAttempts >0){
-        messageEl.textContent = "CONGRATS YOU WON!"
+function updateDisplayMsg() {   
+    if (gameOver) {
+        if (remainingAttempts > 0) {
+            messageEl.textContent = "CONGRATS YOU WON!";
+        } else {
+            messageEl.textContent = "GAME OVER, THE WORD WAS: " + secretWord;
+        }
+        return;
     }
-    else {
-        messageEl.textContent = "GAME OVER, THE WORD WAS: " + secretWord;
-    }
-    return;
-    
-}
-    if (remainingAttempts === maxAttempsts){
+    if (remainingAttempts === maxAttempsts) {
         messageEl.textContent = "Start Guessing!";
+        return;
     }
-    
+
     if (correctGuess.length > 0) {
         messageEl.textContent = "Good guess!";
+        return;
     }
 
     if (wrongGuess.length > 0) {
         const lastWrong = wrongGuess[wrongGuess.length - 1];
         messageEl.textContent = `Incorrect guess: ${lastWrong}`;
+        return;
+    }
 }
 
 
@@ -141,6 +166,8 @@ const allLettersFound = secretWord.split('').every(letter => correctGuess.includ
         disableLetterButtons();
         updateDisplayMsg();
     }
+    console.log("Checking game over... remainingAttempts =", remainingAttempts);
+
 }
 
 

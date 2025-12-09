@@ -18,7 +18,7 @@ body {
 #message {
     font-size: 20px;
     margin-bottom: 15px;
-    height: 24px; /* so UI doesn't jump */
+    height: 24px; 
     color: #333;
     font-weight: bold;
 }
