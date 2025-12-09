@@ -1,13 +1,3 @@
-/* console logs */
-console.log("JS Connected Successfully 🔥");
-
-console.log("wordEl =", wordEl);
-console.log("wrongLettersEl =", wrongLettersEl);
-console.log("attemptsEl =", attemptsEl);
-console.log("keyboardEl =", keyboardEl);
-console.log("hangmanImgEl =", hangmanImgEl);
-console.log("resetBtnEl =", resetBtnEl);
-
 
 /*-------------------------------- Constants --------------------------------*/
 
@@ -48,7 +38,15 @@ const resetBtnEl = document.querySelector('#reset')
 const messageEl = document.querySelector('#message');
 
 
+/* console logs */
+console.log("JS Connected Successfully 🔥");
 
+console.log("wordEl =", wordEl);
+console.log("wrongLettersEl =", wrongLettersEl);
+console.log("attemptsEl =", attemptsEl);
+console.log("keyboardEl =", keyboardEl);
+console.log("hangmanImgEl =", hangmanImgEl);
+console.log("resetBtnEl =", resetBtnEl);
 
 /*----------------------------- Event Listeners -----------------------------*/
 
