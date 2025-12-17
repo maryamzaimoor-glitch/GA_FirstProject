@@ -1,72 +1,134 @@
+/* ------------------- GENERAL PAGE ------------------- */
 
 body {
     display: flex;
     flex-direction: column;
-    font-family:  Helvetica, Tahoma, Verdana, sans-serif;
-    background: #f5f5f5;
     align-items: center;
     padding: 20px;
+    font-family: 'Poppins', sans-serif;
 }
+
+
+/* ------------------- SECRET WORD ------------------- */
 
 #word {
-    font-size: 32px;
-    letter-spacing: 10px;
+    font-size: 40px;
+    letter-spacing: 12px;
     margin: 20px 0;
-    font-weight: bold;
+    font-weight: 700;
+    color: #444;
+    text-shadow: 1px 1px 0 #fff;
 }
 
+
+/* ------------------- MESSAGE ------------------- */
+
 #message {
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 15px;
-    height: 24px; 
-    color: #333;
-    font-weight: bold;
+    margin-top: 20px;
+    height: 28px;
+    color: #FF6B6B;
+    font-weight: 600;
 }
+
+
+/* ------------------- HANGMAN IMAGE ------------------- */
+
+#hangman-img {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: left center;
+    z-index: -1;         
+}
+
+#game-container {
+    position: fixed;
+    top: 0;
+    align-items: center; 
+    z-index: 10;
+    text-align: center;
+    padding-top: 40px;   
+    width: 100%;
+}
+
+/* ------------------- KEYBOARD ------------------- */
+
 #keyboard {
     display: flex;
     flex-wrap: wrap;
-    max-width: 400px;
+    max-width: 420px;
     justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
+    justify-self: center;
+    gap: 10px;
+    margin-top: 25px;
 }
+
 .key-btn {
-    padding: 10px 14px;
+    padding: 12px 16px;
     font-size: 18px;
     border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 6px;
     cursor: pointer;
-    transition: 0.2s;
-    border-radius: 5px;
-    text-decoration: none;
-    display: block;
+
+    border-radius: 12px;
+
+    background-color: #6BCBFF;
+    color: white;
+
+    box-shadow: 0px 4px 0px #4FA3D1;
+
+    transition: 0.2s ease;
 }
 
 .key-btn:hover {
-    background-color: #0056b3;
-    text-decoration:underline;
-    transition: .4s ;
+    transform: translateY(-3px);
+    background-color: #5AB7ED;
 }
+
+.key-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0px 2px 0px #4FA3D1;
+}
+
 .key-btn.disabled,
 .key-btn:disabled {
     background-color: #cccccc;
+    box-shadow: none;
     cursor: not-allowed;
     color: #666;
 }
-#hangman-img {
-    width: 200px;
-    margin-bottom: 20px;
-}
+
+
+/* ------------------- RESET BUTTON ------------------- */
+
 #reset {
-    margin-top: 20px;
-    padding: 10px 20px;
+    margin-top: 25px;
+    padding: 12px 22px;
     font-size: 18px;
     border: none;
-    border-radius: 6px;
-    background-color: #28a745;
+    border-radius: 12px;
+
+    background-color: #57CC99;
     color: white;
+
+    box-shadow: 0px 5px 0px #399B72;
     cursor: pointer;
-    transition: 0.2s;
+
+    transition: 0.2s ease;
 }
+
+#reset:hover {
+    transform: translateY(-3px);
+    background-color: #45B783;
+}
+
+#reset:active {
+    transform: translateY(2px);
+    box-shadow: 0px 3px 0px #399B72;
+}
+
+

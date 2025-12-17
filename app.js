@@ -39,7 +39,7 @@ const messageEl = document.querySelector('#message');
 
 
 /* console logs */
-console.log("JS Connected Successfully 🔥");
+console.log("JS Connected Successfully");
 
 console.log("wordEl =", wordEl);
 console.log("wrongLettersEl =", wrongLettersEl);
@@ -55,6 +55,9 @@ resetBtnEl.addEventListener('click', resetGame);
 /*-------------------------------- Functions --------------------------------*/
 
 function startGame(){
+    messageEl.textContent = "Start Guessing!"
+    attemptsEl.textContent = "Attempts Left = " + remainingAttempts;
+    hangmanImgEl.src = "hangman1.png";
     console.log("startGame() called ");
     secretWord= WORDS[Math.floor(Math.random() * WORDS.length)].toLowerCase();
     console.log("Secret word selected:", secretWord);
@@ -63,7 +66,6 @@ function startGame(){
     wrongGuess =[];
     remainingAttempts = maxAttempts;
     gameOver = false;
-    attemptsEl.textContent = 'Attempts Left = ' + remainingAttempts;
 
   wordEl.textContent = secretWord.split('').map
   (letter => (correctGuess.includes(letter) ? letter : '_')).join(' ');
@@ -89,14 +91,20 @@ function handleGuess(letter) {
         correctGuess.push(letter);
         console.log("Correct guess:", letter);
     } 
+    
     else {
         wrongGuess.push(letter);
         remainingAttempts--;
+        attemptsEl.textContent = "Attempts Left = " + remainingAttempts;
+
         console.log("Wrong guess:", letter);
     }
+    
 
     updateWordDisplay();   
-    updateDisplayMsg()
+    updateDisplayMsg(letter);
+    checkGameOver();
+    updateWrongLetters();
 }
 
 function updateWordDisplay() {
@@ -121,13 +129,17 @@ function handLetterClick(){
 }
 
 function updateWrongLetters(){
-    wrongLettersEl.textContent = wrongGuess.join(', '); // joins the wrong guesses array
-
+    wrongLettersEl.textContent = wrongGuess.join(', '); 
+    if (wrongGuess.length === 0) {
+        hangmanImgEl.src = "hangman1.png";
+    } else {
+hangmanImgEl.src = `hangman${wrongGuess.length + 1}.png?v=${Date.now()}`;
+    }
     console.log("updateWrongLetters → wrongGuess:", wrongGuess);
+    
 
 }
-
-function updateDisplayMsg() {   
+function updateDisplayMsg(letter) {
 
     if (gameOver) {
         if (remainingAttempts > 0) {
@@ -135,31 +147,23 @@ function updateDisplayMsg() {
         } else {
             messageEl.textContent = "GAME OVER, THE WORD WAS: " + secretWord;
         }
-        return; 
-    }
-
-    if (remainingAttempts === maxAttempts) {
-        messageEl.textContent = "Start Guessing!";
         return;
     }
 
-    if (correctGuess.length > 0) {
+    if (wrongGuess.includes(letter)) {
+        messageEl.textContent = `Incorrect guess: ${letter}`;
+        return;
+    }
+
+    if (correctGuess.includes(letter)) {
         messageEl.textContent = "Good guess!";
-        return;
-    }
-
-    if (wrongGuess.length > 0) {
-        const lastWrong = wrongGuess[wrongGuess.length - 1];
-        messageEl.textContent = `Incorrect guess: ${lastWrong}`;
         return;
     }
 }
 
 
+
 function checkGameOver(){
-    if (remainingAttempts === maxAttempts){
-        messageEl.textContent = "Start Guessing!";
-    }
 
     if (remainingAttempts <= 0){
         gameOver= true;
@@ -193,7 +197,7 @@ function resetGame(){
     wrongLettersEl.textContent = "";
     messageEl.textContent = "";
     wordEl.textContent = "";
-    hangmanImgEl.src = '';
+    hangmanImgEl.src = "hangman1.png";
 
     const buttons = document.querySelectorAll('.key-btn');
     buttons.forEach(btn => {
@@ -207,7 +211,7 @@ function resetGame(){
 function generateKeyboard() {
     keyboardEl.innerHTML = "";
 
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     alphabet.split("").forEach(letter => {
         const btn = document.createElement("button");
@@ -217,5 +221,6 @@ function generateKeyboard() {
         keyboardEl.appendChild(btn);
     });
 }
+
 startGame(); 
 
