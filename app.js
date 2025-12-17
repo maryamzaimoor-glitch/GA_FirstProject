@@ -55,7 +55,7 @@ resetBtnEl.addEventListener('click', resetGame);
 /*-------------------------------- Functions --------------------------------*/
 
 function startGame(){
-    messageEl.textContent = "Start Guessing!"
+    messageEl.textContent = "Start Guessing!"  
     attemptsEl.textContent = "Attempts Left = " + remainingAttempts;
     hangmanImgEl.src = "hangman1.png";
     console.log("startGame() called ");
@@ -74,8 +74,6 @@ function startGame(){
     updateWrongLetters();
 
 }
-
-
 
 function handleGuess(letter) {
     console.log("handleGuess triggered with:", letter);
@@ -162,7 +160,6 @@ function updateDisplayMsg(letter) {
 }
 
 
-
 function checkGameOver(){
 
     if (remainingAttempts <= 0){
@@ -208,6 +205,7 @@ function resetGame(){
     startGame();
 
 }
+
 function generateKeyboard() {
     keyboardEl.innerHTML = "";
 
