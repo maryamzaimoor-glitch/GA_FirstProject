@@ -53,7 +53,7 @@ body {
     z-index: 10;
     text-align: center;
     padding-top: 40px;   
-    width: 100%;
+    width: 100;
 } 
 
 /* ------------------- KEYBOARD ------------------- */
@@ -81,7 +81,7 @@ body {
 
     box-shadow: 0px 4px 0px #4FA3D1;
 
-    transition: 0.2s ease;
+    transition: 0.2s;
 }
 
 .key-btn:hover {
@@ -94,7 +94,6 @@ body {
     box-shadow: 0px 2px 0px #4FA3D1;
 }
 
-.key-btn.disabled,
 .key-btn:disabled {
     background-color: #cccccc;
     box-shadow: none;
@@ -126,9 +125,5 @@ body {
     background-color: #45B783;
 }
 
-#reset:active {
-    transform: translateY(2px);
-    box-shadow: 0px 3px 0px #399B72;
-}
 
 
