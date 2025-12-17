@@ -12,7 +12,27 @@ const WORDS = [
     'rain',
     'aubh',
     'student',
-    'general assembly'
+    'general assembly',
+    'work',
+    'training',
+    'coding',
+    'fun',
+    'game',
+    'puzzle',
+    'challenge',
+    'developer',
+    'keyboard',
+    'monitor',
+    'laptop',
+    'coffee',
+    'tea',
+    'water',
+    'exercise',
+    'music',
+    'art',
+    'travel',
+    'adventure',
+    'nature'
 ];
     
 
