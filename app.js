@@ -123,7 +123,7 @@ function updateWordDisplay() {
 }
 
 
-function handLetterClick(){
+function handleLetterClick(){
     if (gameOver) return;
     const letter = this.textContent.toLowerCase()
     handleGuess(letter);
@@ -225,7 +225,7 @@ function generateKeyboard() {
         const btn = document.createElement("button");
         btn.textContent = letter;
         btn.classList.add("key-btn");
-        btn.addEventListener("click", handLetterClick);
+        btn.addEventListener("click", handleLetterClick);
         keyboardEl.appendChild(btn);
     });
 }
