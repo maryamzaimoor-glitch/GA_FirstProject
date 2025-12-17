@@ -147,7 +147,7 @@ hangmanImgEl.src = `hangman${wrongGuess.length + 1}.png?v=${Date.now()}`;
     
 
 }
-function updateDisplayMsg(letter) {
+function updateDisplayMsg() {
 
     if (gameOver) {
         if (remainingAttempts > 0) {
@@ -157,18 +157,8 @@ function updateDisplayMsg(letter) {
         }
         return;
     }
-
-    if (wrongGuess.includes(letter)) {
-        messageEl.textContent = `Incorrect guess: ${letter}`;
-        return;
-    }
-
-    if (correctGuess.includes(letter)) {
-        messageEl.textContent = "Good guess!";
-        return;
-    }
+    messageEl.textContent = "Keep Guessing!";
 }
-
 
 function checkGameOver(){
 
